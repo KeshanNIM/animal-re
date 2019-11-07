@@ -1,0 +1,98 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "4602e858-e13f-49b6-9615-37067dd42ac7": {
+        "id": "4602e858-e13f-49b6-9615-37067dd42ac7",
+        "parent": null,
+        "name": "animal-re",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "6669b1a8-b50f-431e-873c-50c6aab3bfc7"
+        ],
+        "isRemovable": false,
+        "filePath": "animal-re"
+      },
+      "6669b1a8-b50f-431e-873c-50c6aab3bfc7": {
+        "id": "6669b1a8-b50f-431e-873c-50c6aab3bfc7",
+        "parent": "4602e858-e13f-49b6-9615-37067dd42ac7",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "animal-re/lambda.js",
+        "code": "exports.handler = function(event, context, callback) {\n    \n    console.log(JSON.stringify(event, null, 2));\n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": [
+          {
+            "resourceName": "s3bucketkeshan",
+            "config": {
+              "type": "s3:ObjectCreated:*",
+              "keyPrefix": "",
+              "keySuffix": ""
+            }
+          }
+        ]
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "4602e858-e13f-49b6-9615-37067dd42ac7",
+    "openFiles": [
+      "6669b1a8-b50f-431e-873c-50c6aab3bfc7"
+    ],
+    "currentFileId": "6669b1a8-b50f-431e-873c-50c6aab3bfc7",
+    "resources": {
+      "s3bucketkeshan": {
+        "name": "s3bucketkeshan",
+        "type": "S3",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "region": "us-east-2",
+            "name": "bucketkeshan"
+          }
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "animal-re",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-2",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1573110375924
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "animal-re",
+      "url": "https://github.com/KeshanNIM/animal-re"
+    }
+  }
+}
