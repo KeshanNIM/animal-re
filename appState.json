@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "animal-re/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n    \n    console.log(JSON.stringify(event, null, 2));\n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "code": "\nlet AWS = require(\"aws-sdk\");\nlet rekog = new AWS.Rekognition();\n\nexports.handler = function(event, context, callback) {\n    //console.log(JSON.stringify(event, null, 2));\n\n    let s3 = event.Records[0].s3;\n    rekog.detectLabels({\n        Image: {\n            S3Object: {\n                Bucket: s3.bucket.name,\n                Name: s3.object.key\n            }\n        },\n        MaxLabels: 1\n    }).promise()\n    .then(data => {\n        console.log(data);\n        callback(null, {});\n    })\n    .catch(err => callback(err));\n}\n",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -39,7 +39,26 @@
               "keySuffix": ""
             }
           }
-        ]
+        ],
+        "customSecurityPolicy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Resource": "*",
+              "Action": [
+                "rekognition:*"
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Resource": "udith-s-bucket/*",
+              "Action": [
+                "s3:GetObject"
+              ]
+            }
+          ]
+        }
       }
     },
     "deletedFiles": [],
@@ -76,7 +95,13 @@
       }
     ],
     "packageJSON": {
-      "dependencies": {}
+      "dependencies": {
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "version": "2.566.0",
+          "language": "javascript"
+        }
+      }
     }
   },
   "PROJECT_META": {
@@ -86,7 +111,7 @@
     "projectRegion": "us-east-2",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1573110375924
+    "lastSave": 1573111285489
   },
   "VCS_STATE": {
     "provider": "GitHub",

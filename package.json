@@ -1,6 +1,8 @@
 {
   "name": "animal-re",
   "version": "1.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "aws-sdk": "2.566.0"
+  },
   "devDependencies": {}
 }
